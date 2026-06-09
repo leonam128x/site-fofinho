@@ -4,16 +4,26 @@ const resultado = document.getElementById("resultado");
 const botoes = document.getElementById("botoes");
 const titulo = document.getElementById("titulo");
 
-botaoNao.addEventListener("mouseover", () => {
+const botaoNao = document.getElementById("nao");
 
-    const largura = window.innerWidth - 150;
-    const altura = window.innerHeight - 100;
+function fugir() {
+    const largura = window.innerWidth - botaoNao.offsetWidth;
+    const altura = window.innerHeight - botaoNao.offsetHeight;
 
     const x = Math.random() * largura;
     const y = Math.random() * altura;
 
-    botaoNao.style.left = `${x}px`;
-    botaoNao.style.top = `${y}px`;
+    botaoNao.style.left = x + "px";
+    botaoNao.style.top = y + "px";
+}
+
+// Computador
+botaoNao.addEventListener("mouseover", fugir);
+
+// Celular
+botaoNao.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    fugir();
 });
 
 botaoSim.addEventListener("click", () => {
